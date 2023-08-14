@@ -14,7 +14,7 @@ app.use(express.json());
 //ROUTES
 
 app.get('/home', (req, res) => {
-	res.send('hola mundo 2');
+	res.send('hola mundo 3');
 });
 
 

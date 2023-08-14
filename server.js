@@ -1,4 +1,4 @@
-const httpServer = require('./src/app');
+const httpServer = require('./app');
 const cluster = require('cluster');
 const os = require('os');
 const logger = require('./src/utils/logger');
