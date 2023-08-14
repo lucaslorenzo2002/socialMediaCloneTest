@@ -13,7 +13,7 @@ app.use(express.json());
 
 //ROUTES
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
 	res.send('hola mundo 2');
 });
 
