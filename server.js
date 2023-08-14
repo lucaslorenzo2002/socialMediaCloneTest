@@ -1,7 +1,7 @@
 const httpServer = require('./app');
 const cluster = require('cluster');
 const os = require('os');
-const logger = require('./src/utils/logger');
+const logger = require('./utils/logger');
 
 async function server (){
 	const numCpus = os.cpus().length;
