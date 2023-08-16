@@ -1,7 +1,8 @@
-const httpServer = require('./app');
+const httpServer = require('./src/app');
 const cluster = require('cluster');
 const os = require('os');
-const logger = require('./utils/logger');
+const logger = require('./src/utils/logger');
+const sequelize = require('./src/config/sequelizeConfig');
 
 async function server (){
 	const numCpus = os.cpus().length;
@@ -19,6 +20,12 @@ async function server (){
 			cluster.fork();
 		});
 	}else{
+
+		await sequelize.sync({alter: true}).then(() => {
+			logger.info('All models were synchronized successfully.');
+		}).catch((err) => {
+			logger.info(err);
+		});
 
 		const PORT = process.env.PORT || 3000;
 
