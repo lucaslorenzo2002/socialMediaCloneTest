@@ -32,7 +32,7 @@ app.use(cors({
 //ROUTES
 
 app.get('/home', (req, res) => {
-	res.send('hola mundo 5');
+	res.send('hola mundo 6');
 });
 
 
