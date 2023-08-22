@@ -5,21 +5,6 @@ const logger = require('./src/utils/logger');
 const sequelize = require('./src/config/sequelizeConfig');
 
 async function server (){
-	const numCpus = os.cpus().length;
-
-	if(cluster.isPrimary){
-		logger.info(numCpus);
-		logger.info(process.pid);
-
-		for(let i = 0; i < numCpus; i++){
-			cluster.fork();
-		}
-    
-		cluster.on('exit', worker => {
-			logger.info(worker.process.pid);
-			cluster.fork();
-		});
-	}else{
 
 		await sequelize.sync({alter: true}).then(() => {
 			logger.info('All models were synchronized successfully.');
@@ -35,6 +20,5 @@ async function server (){
 
 		server.on('error', err => logger.info(err));
 	}
-}
 
 server();
